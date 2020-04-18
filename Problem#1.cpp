@@ -13,7 +13,7 @@ public:
         // first int will store the array element
         // second element stores index
         unordered_map<int, int> umap;
-        
+
         // Go over all elements and save the index with
         // element as key
         // If (target - element) is already in the map
@@ -24,10 +24,10 @@ public:
             {
                 return {umap[target - nums[i]], i};
             }
-            
+
             umap[nums[i]] = i;
         }
         return {-1};
     }
-    
+
 };
