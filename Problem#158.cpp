@@ -21,30 +21,31 @@ n -> number of characters to read
 class Solution
 {
 private:
-    int buffer4Index = 0;   // Buffer index that persists between calls
-    char buf4[4];           // Buffer of 4 char elements
-    int bufSize = 0;        // Size of buffer returned by read4
+    int buffer4Index = 0;   // Buffer4 index that persists between calls
+    char buffer4[4];        // Buffer of 4 char elements
+    int bufferSize = 0;     // Size of buffer returned by read4
 
 public:
     int read(char *buf, int n)
     {
         // index for destination buffer
         int totalRead = 0;
-        
+
         while(totalRead != n)
         {
-            // If previous buffer index is 0, fetch 
-            // more characters into buf4
-            if(buffer4Index == 0) bufSize = read4(buf4);
-            
-            // If buffer size is 0, break
-            if(bufSize == 0) break;
-            
+            // If buffer4 index is 0, fetch
+            // more characters into buffer4
+            if(buffer4Index == 0) bufferSize = read4(buffer4);
+
+            // If buffer size returned above is 0, break
+            if(bufferSize == 0) break;
+
             // Copy char elements from buffer to destination
-            buf[totalRead++] = buf4[buffer4Index];
-            
-            // Advance the buffer index
-            buffer4Index = (buffer4Index + 1) % bufSize;
+            // and advance the destination buffer index
+            buf[totalRead++] = buffer4[buffer4Index];
+
+            // Advance the buffer4 index
+            buffer4Index = (buffer4Index + 1) % bufferSize;
         }
 
         return totalRead;
