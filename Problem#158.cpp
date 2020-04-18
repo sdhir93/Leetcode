@@ -40,8 +40,8 @@ public:
             // If buffer size returned above is 0, break
             if(bufferSize == 0) break;
 
-            // Copy char elements from buffer to destination
-            // and advance the destination buffer index
+            // Copy char elements from buffer4 to destination
+            // buffer and advance the destination buffer index
             buf[totalRead++] = buffer4[buffer4Index];
 
             // Advance the buffer4 index
