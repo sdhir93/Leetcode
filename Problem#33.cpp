@@ -30,10 +30,8 @@ public:
         while (low <= high)
         {
             // Get the current mid number
-            mid = (low + high)/2;
+            mid = (high - low)/2 + low;
             midNum = nums[mid];
-
-            cout << midNum << endl;
 
             // If target met, return index
             if (midNum == target) return mid;
