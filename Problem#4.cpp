@@ -11,6 +11,8 @@ startIndex and endIndex until this condition is met
 
 Time complexity : O(log(min(m,n))
 Space complexity : O(1);
+m -> size of first array
+n -> size of second array
 */
 class Solution
 {
