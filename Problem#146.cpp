@@ -22,7 +22,8 @@ an unordered map that maps the key to the list iterator
     - update map to set key to beginning of list
 
 Time complexity : O(1)
-Space complexity : O(1)
+Space complexity : O(n)
+n -> size of cache
 */
 
 class LRUCache
@@ -37,23 +38,23 @@ public:
     {
         csize = capacity;
     }
-    
+
     int get(int key)
     {
         // search for key in the map
         if(umap.find(key) == umap.end()) return -1;
-        
+
         // bring the key to front
         dlist.splice(dlist.begin(), dlist, umap[key]);
-        
+
         // update the map
         umap[key] = dlist.begin();
-        
+
         // return the value
         return dlist.begin()->second;
     }
-        
-        
+
+
     void put(int key, int value)
     {
         // search for key in the map
@@ -61,7 +62,7 @@ public:
         {
             // bring the key to front
             dlist.splice(dlist.begin(), dlist, umap[key]);
-            
+
             // update the value
             dlist.begin()->second = value;
         }
@@ -69,18 +70,18 @@ public:
         {
             // check cache size
             if(umap.size() >= csize)
-            {   
+            {
                 // delete the key
                 umap.erase(dlist.back().first);
-                
+
                 // remove the pair from list
                 dlist.pop_back();
             }
-            
+
             // create a pair and bring to front
             dlist.push_front(make_pair(key,value));
         }
-       
+
         // update the map
         umap[key] = dlist.begin();
     }

@@ -21,10 +21,13 @@ class Solution
 public:
     void sortColors(vector<int>& nums)
     {
+        // Initialize three indices
+        // One for each color
         int low = 0;
         int high = nums.size() - 1;
         int mid = 0;
 
+        // Continue swapping till mid reaches high
         while(mid <= high)
         {
             int current = nums[mid];
