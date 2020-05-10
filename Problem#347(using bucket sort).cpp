@@ -71,8 +71,8 @@ public:
                 res.push_back(element);
 
                 // Return result when size k is reached
-				if (res.size() == k) return res;
-			}
+                if (res.size() == k) return res;
+            }
         }
 
         return res;
