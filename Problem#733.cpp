@@ -33,16 +33,16 @@ public:
 
         // top
         if (sr > 0 && image[sr - 1][sc] == oldColor)
-          image= floodFill(image, sr - 1, sc, newColor);
+          image = floodFill(image, sr - 1, sc, newColor);
         // bottom
         if (sr < rows - 1 && image[sr + 1][sc] == oldColor)
-          image= floodFill(image, sr + 1, sc, newColor);
+          image = floodFill(image, sr + 1, sc, newColor);
         // left
         if (sc > 0 && image[sr][sc - 1] == oldColor)
-          image= floodFill(image, sr, sc - 1, newColor);
+          image = floodFill(image, sr, sc - 1, newColor);
         //right
         if (sc < cols - 1 && image[sr][sc + 1] == oldColor)
-          image= floodFill(image, sr, sc + 1, newColor);
+          image = floodFill(image, sr, sc + 1, newColor);
 
         return image;
     }
