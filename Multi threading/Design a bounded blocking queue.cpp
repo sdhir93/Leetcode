@@ -44,27 +44,19 @@ public:
         // while loop to avoid spurious wake ups
         while(q.size() == capacityQ)
         {
-            try
-            {
-                waitingWriters++;
-                itemRemoved.wait(lck);
-                waitingWriters--;
-            }
-            catch (...)
-            {
-                waitingWriters--;
-                throw;
-            }
+            waitingWriters++;
+            itemRemoved.wait(lck);
+            waitingWriters--;
         }
+
+        // Store the element
+        q.push(element);
 
         // Notify only if there are waiting reader threads
         if(waitingReaders)
         {
             itemAdded.notify_one();
         }
-
-        // Store the element
-        q.push(element);
     }
 
     int dequeue()
@@ -76,17 +68,9 @@ public:
         // while loop to avoid spurious wake ups
         while(q.empty())
         {
-            try
-            {
-                waitingReaders++;
-                itemAdded.wait(lck);
-                waitingReaders--;
-            }
-            catch (...)
-            {
-                waitingReaders--;
-                throw;
-            }
+            waitingReaders++;
+            itemAdded.wait(lck);
+            waitingReaders--;
         }
 
         // Get the item and remove

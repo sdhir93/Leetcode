@@ -45,10 +45,13 @@ public:
         // search for key in the map
         if(umap.find(key) == umap.end()) return -1;
 
-        // bring the key to front
-        dlist.splice(dlist.begin(), dlist, umap[key]);
+        // If found, push to front
+        dlist.push_front(*umap[key]);
 
-        // update the map
+        // Erase the current mapping
+        dlist.erase(umap[key]);
+
+        // Add new key value to the map
         umap[key] = dlist.begin();
 
         // return the value
@@ -62,7 +65,10 @@ public:
         if(umap.find(key) != umap.end())
         {
             // bring the key to front
-            dlist.splice(dlist.begin(), dlist, umap[key]);
+            dlist.push_front(*umap[key]);
+
+            // Erase the current mapping
+            dlist.erase(umap[key]);
 
             // update the value
             dlist.begin()->second = value;
